@@ -1,5 +1,6 @@
 ## What is this?
-A basic PHP+Apache container to run a Magento site. Uses `--add-host` to define a hostname for MySQL connection.
+- A basic PHP+Apache container to run a Magento site. Uses `--add-host` to define a hostname for MySQL connection.
+- Shamelessly ripped off of https://hub.docker.com/r/occitech/magento/
 
 ## Assumptions
 - You have a locally running MySQL server
