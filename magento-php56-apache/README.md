@@ -4,6 +4,7 @@
 
 ## Assumptions
 - You have a locally running MySQL server
+- Your MySQL user can connect from any host (i.e. 'root'@'%')
 
 ## How do I use it?
 - Build the container
