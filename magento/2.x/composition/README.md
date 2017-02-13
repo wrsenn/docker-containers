@@ -1,8 +1,8 @@
 ## What is this?
-- A basic LAMP stack composition to run a Magento site
+- A basic LAMP stack composition to run a Magento2 site
 
 ## Assumptions
-- Magento codebase is located in a subdirectory `./webroot` of the repositiory root
+- Magento2 codebase is located in a subdirectory `./webroot` of the repositiory root
 - You have no other web or MySQL servers running (i.e. ports 80, 9000, and 3306 are open)
 
 ## How do I use it?
