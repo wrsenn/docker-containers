@@ -10,7 +10,7 @@
 - Build the container
   - In this directory, run the following: `docker build -t magento2-php79-apache:latest .`
 - Run the container
-  - This takes over your local port 80 and 9000 (for Xdebug), so make sure those are open.
+  - This takes over your local port 80, so make sure it's open.
   - Run this here command to spin it up, in your repo root, assuming the Magento files are in a subdirectory `webroot/`. Specify a base URL where noted:
     - `docker run --name magento2 --add-host=docker-host:$(ipconfig getifaddr en0) -v $PWD/webroot:/var/www/html -p 80:80 -p 9000:9000 magento2-php70-apache set-base-url -c <MY BASE URL>`
   - Edit your `app/etc/env.php`'s MySQL host, and change it to `docker-host` (see above).

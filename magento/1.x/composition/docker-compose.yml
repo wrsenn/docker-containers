@@ -18,5 +18,4 @@ services:
       - ./magento/local.xml:/var/www/html/app/etc/local.xml
     ports:
       - '80:80'
-      - '9000:9000'
     command: wait-for-it.sh -t 45 mysql-host:3306 -- init.sh -c "http://magento.dev/"

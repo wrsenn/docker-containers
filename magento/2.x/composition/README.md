@@ -3,7 +3,7 @@
 
 ## Assumptions
 - Magento2 codebase is located in a subdirectory `./webroot` of the repositiory root
-- You have no other web or MySQL servers running (i.e. ports 80, 9000, and 3306 are open)
+- You have no other web or MySQL servers running (i.e. ports 80 and 3306 are open)
 
 ## How do I use it?
 - Customize `docker-compose.yml` if desired!
@@ -17,7 +17,7 @@
   - Overwrite your `env.php` with the contents of `./composition/magento/env.php`
 
 ## How does it work?
-- Maps ports 80 (HTTP), 9000 (Xdebug), and 3306 (MySQL) to host 80, 9000, 3306
+- Maps ports 80 (HTTP) and 3306 (MySQL) to host 80, 3306
 - Relative to the repo root...
   - Mounts `/webroot` into Apache container's `/var/www/html` subdirectory
   - Mounts `/db` (and creates, if it does not exist) into MySQL container's `/var/lib/mysql`
