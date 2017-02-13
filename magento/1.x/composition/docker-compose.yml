@@ -18,7 +18,8 @@ services:
       DOCKER_HOST_IP: $DOCKER_HOST_IP
     volumes: 
       - ../webroot:/var/www/html
+      - ./magento/init.sh:/usr/local/bin/init.sh
       - ./magento/local.xml:/var/www/html/app/etc/local.xml
     ports:
       - '80:80'
-    command: wait-for-it.sh -t 45 mysql-host:3306 -- init.sh
+    command: wait-for-it.sh -t 45 mysql-host:3306 -- /bin/bash init.sh

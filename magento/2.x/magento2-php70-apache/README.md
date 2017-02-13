@@ -8,7 +8,7 @@
 
 ## How do I use it?
 - Build the container
-  - In this directory, run the following: `docker build -t magento2-php79-apache:latest .`
+  - In this directory, run the following: `docker build -t magento2-php70-apache:latest .`
 - Run the container
   - This takes over your local port 80, so make sure it's open.
   - Run this here command to spin it up, in your repo root, assuming the Magento files are in a subdirectory `webroot/`. Specify a base URL where noted:
