@@ -1,9 +1,11 @@
-version: '2'
+version: '3'
 services:
   mysql-host:
     build:
       context: ./mysql
-    restart: always
+    restart_policy:
+      condition: on-failure
+      max_attempts: 3
     volumes: 
       - ../db:/var/lib/mysql
     ports: 
@@ -14,11 +16,13 @@ services:
   magento-host:
     build:
       context: ./magento
-    restart: always
+    restart_policy:
+      condition: on-failure
+      max_attempts: 3
     volumes: 
       - ../webroot:/var/www/html
       - ./magento/local.xml:/var/www/html/app/etc/local.xml
     ports:
       - '80:80'
       - '9000:9000'
-    entrypoint: init.sh -c "http://magento.dev/"
+    command: wait-for-it.sh mysql-host:3306 -- init.sh -c "http://magento.dev/"

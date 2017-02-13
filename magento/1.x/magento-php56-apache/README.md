@@ -1,5 +1,5 @@
 ## What is this?
-- A basic PHP+Apache container to run a Magento site. Uses `--add-host` to define a hostname for MySQL connection.
+- A basic PHP+Apache container to run a Magento site. Use `--add-host` at runtime to define a hostname for MySQL connection.
 - Shamelessly ripped off of https://hub.docker.com/r/occitech/magento/
 
 ## Assumptions
@@ -17,5 +17,5 @@
   - Hit the base URL (assuming you have *.dev mapped to localhost), and observe a running site.
 
 ## What doesn't this do?
-- Doesn't account for sites with multiple subdomains. We'll need to update the `bin/set-base-url` file to do more than just the basic base URL.
+- Doesn't account for sites with multiple subdomains. We'll need to update the `init.sh` file to do more than just the basic base URL.
 - Doesn't automagically wire up your MySQL connections. Edit your `local.xml` and clear cache.
