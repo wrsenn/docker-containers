@@ -15,9 +15,7 @@ while getopts "c" option; do
   esac
 done
 
-n98-magerun --root-dir=/var/www/html config:set web/unsecure/base_url $BASE_URL >/dev/null 2>&1
-n98-magerun --root-dir=/var/www/html config:set web/secure/base_url $BASE_URL >/dev/null 2>&1
-
-echo "Base URL set to ${BASE_URL}"
+n98-magerun --root-dir=/var/www/html config:set web/unsecure/base_url $BASE_URL
+n98-magerun --root-dir=/var/www/html config:set web/secure/base_url $BASE_URL
 
 apache2-foreground

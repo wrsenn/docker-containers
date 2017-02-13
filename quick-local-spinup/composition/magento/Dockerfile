@@ -1,0 +1,1 @@
+FROM magento-php56-apache:latest
