@@ -6,11 +6,12 @@
 - You have no other web or MySQL servers running (i.e. ports 80 and 3306 are open)
 
 ## How do I use it?
-- Customize `docker-compose.yml` if desired!
-- Copy `./composition` (this directory) to your Magento repostiry root, and build
+- Copy `./composition` (this directory) to your Magento repostiry root
 - For Xdebug support, set the DOCKER_HOST_IP environment variable to your machine's IP
   - `export DOCKER_HOST_IP=$(ipconfig getifaddr en0)`
-- Run the composition
+- Customize `./composition/docker-compose.yml` and `./composition/magento/init.sh`
+  - Note specifically that `init.sh`'s `n98-magerun2` commands may not be suitable for your site!
+- Build and run the composition
 - If no DB has been imported, connect and import, as local port 3306 should be mapped to the composition's MySQL instance
   - You'll probably need to clear cache after this
 - Navigate to http://magento.dev/
@@ -24,6 +25,7 @@
   - Mounts `/webroot` into Apache container's `/var/www/html` subdirectory
   - Mounts `/db` (and creates, if it does not exist) into MySQL container's `/var/lib/mysql`
   - Mounts `/composition/magento/env.php` to `/var/www/html/app/etc/env.php`, preserving the `env.php` on your filesystem
+  - Mounts `/composition/magento/init.sh` to `/usr/local/bin/init.sh`, replacing the default container init script
 
 ## What doesn't this do?
 - Doesn't account for sites with multiple subdomains
