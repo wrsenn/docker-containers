@@ -10,6 +10,7 @@
 - Copy `/composition` to your Magento repostiry root
 - Build and run the composition
 - If no DB has been imported, connect and import, as local port 3306 should be mapped to the composition's MySQL instance
+  - You'll probably need to clear cache after this
 - Navigate to http://magento.dev/
 - For `n98-magerun` support:
   - Add an entry to your `/etc/hosts` file mapping `126.0.0.1` to `mysql-host`
