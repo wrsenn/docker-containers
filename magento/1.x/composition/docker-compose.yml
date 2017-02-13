@@ -3,9 +3,6 @@ services:
   mysql-host:
     build:
       context: ./mysql
-    restart_policy:
-      condition: on-failure
-      max_attempts: 3
     volumes: 
       - ../db:/var/lib/mysql
     ports: 
@@ -16,9 +13,6 @@ services:
   magento-host:
     build:
       context: ./magento
-    restart_policy:
-      condition: on-failure
-      max_attempts: 3
     volumes: 
       - ../webroot:/var/www/html
       - ./magento/local.xml:/var/www/html/app/etc/local.xml
