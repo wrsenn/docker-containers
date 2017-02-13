@@ -13,9 +13,12 @@ services:
   magento-host:
     build:
       context: ./magento
+    environment: 
+      BASE_URL: http://magento.dev/
+      DOCKER_HOST_IP: $DOCKER_HOST_IP
     volumes: 
       - ../webroot:/var/www/html
       - ./magento/env.php:/var/www/html/app/etc/env.php
     ports:
       - '80:80'
-    command: wait-for-it.sh -t 45 mysql-host:3306 -- init.sh -c "http://magento.dev/"
+    command: wait-for-it.sh -t 45 mysql-host:3306 -- init.sh

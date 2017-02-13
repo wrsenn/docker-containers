@@ -7,8 +7,10 @@
 
 ## How do I use it?
 - Customize `docker-compose.yml` if desired!
-- Copy `./composition` (this directory) to your Magento repostiry root
-- Build and run the composition
+- Copy `./composition` (this directory) to your Magento repostiry root, and build
+- For Xdebug support, set the DOCKER_HOST_IP environment variable to your machine's IP
+  - `export DOCKER_HOST_IP=$(ipconfig getifaddr en0)`
+- Run the composition
 - If no DB has been imported, connect and import, as local port 3306 should be mapped to the composition's MySQL instance
   - You'll probably need to clear cache after this
 - Navigate to http://magento.dev/
