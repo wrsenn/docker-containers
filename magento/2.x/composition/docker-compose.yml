@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mysql-host:
+    build:
+      context: ./mysql
+    volumes: 
+      - ../db:/var/lib/mysql
+    ports: 
+      - '3306:3306'
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: magento
+  magento-host:
+    build:
+      context: ./magento
+    volumes: 
+      - ../webroot:/var/www/html
+      - ./magento/env.php:/var/www/html/app/etc/env.php
+    ports:
+      - '80:80'
+      - '9000:9000'
+    command: wait-for-it.sh mysql-host:3306 -- init.sh -c "http://magento.dev/"

@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:7.0-apache
 
 RUN apt-get update \
     && apt-get install -y libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype6 libjpeg62-turbo libpng12-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev mysql-client \
@@ -9,6 +9,9 @@ RUN apt-get update \
     && docker-php-ext-install mcrypt \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install soap \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install json \
+    && docker-php-ext-install iconv \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && apt-get purge --auto-remove -y libpng12-dev libmcrypt-dev libcurl3-dev libpng12-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev
@@ -16,8 +19,8 @@ RUN apt-get update \
 RUN usermod -u 1000 www-data
 RUN a2enmod rewrite
 
-RUN curl -o /usr/local/bin/n98-magerun https://files.magerun.net/n98-magerun-latest.phar \
-    && chmod +x /usr/local/bin/n98-magerun
+RUN curl -o /usr/local/bin/n98-magerun2 https://files.magerun.net/n98-magerun2-latest.phar \
+    && chmod +x /usr/local/bin/n98-magerun2
 
 COPY ./init.sh /usr/local/bin/init.sh
 RUN chmod +x /usr/local/bin/init.sh
