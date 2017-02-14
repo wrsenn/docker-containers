@@ -1,7 +1,7 @@
 FROM php:7.0-apache
 
 RUN apt-get update \
-    && apt-get install -y libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype6 libjpeg62-turbo libpng12-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev libicu-dev libxslt1-dev libicu52 mysql-client \
+    && apt-get install -y libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype6 libjpeg62-turbo libpng12-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev libicu-dev libxslt1-dev libxslt1.1 libicu52 mysql-client \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
