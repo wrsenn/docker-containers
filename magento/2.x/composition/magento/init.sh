@@ -4,10 +4,15 @@ shopt -s expand_aliases
 
 alias n98="n98-magerun2 --skip-root-check --root-dir=/var/www/html"
 
+## REQUIRED
+echo "ServerName $DOMAIN" >> /etc/apache2/apache2.conf
+
 echo "Updating xdebug configuration..."
 echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.remote_host=$DOCKER_HOST_IP" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+## END REQUIRED
 
+## OPTIONAL
 ## NOTE! This is VERY slow within Docker for some reason. Once the container
 ## is started, these shoudl be run from the host system if possible.
 
@@ -36,5 +41,7 @@ n98 config:delete web/unsecure/base_static_url
 n98 config:delete web/secure/base_static_url
 n98 config:set web/secure/use_in_frontend 0
 n98 config:set web/secure/use_in_adminhtml 0
+## END OPTIONAL
 
+## START
 apache2-foreground
