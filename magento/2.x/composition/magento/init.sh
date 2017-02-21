@@ -44,4 +44,4 @@ n98 config:set web/secure/use_in_adminhtml 0
 ## END OPTIONAL
 
 ## START
-apache2-foreground
+exec apache2-foreground

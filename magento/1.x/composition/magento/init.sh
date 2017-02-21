@@ -21,4 +21,4 @@ n98 cache:flush
 ## END OPTIONAL
 
 ## START
-apache2-foreground
+exec apache2-foreground
