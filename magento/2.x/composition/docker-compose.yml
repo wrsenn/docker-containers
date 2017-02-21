@@ -13,10 +13,10 @@ services:
   magento-host:
     build:
       context: ./magento
-    environment: 
-      BASE_URL: http://magento.dev/
+    environment:
+      DOMAIN: magento.dev
       DOCKER_HOST_IP: $DOCKER_HOST_IP
-    volumes: 
+    volumes:
       - ../webroot:/var/www/html
       - ./magento/init.sh:/usr/local/bin/init.sh
       - ./magento/env.php:/var/www/html/app/etc/env.php

@@ -10,6 +10,7 @@ RUN apt-get update \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install soap \
     && docker-php-ext-install xsl \
+    && docker-php-ext-install opcache \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && apt-get purge --auto-remove -y libpng12-dev libmcrypt-dev libcurl3-dev libpng12-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev libxslt1-dev
