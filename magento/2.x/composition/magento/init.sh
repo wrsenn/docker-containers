@@ -8,14 +8,18 @@ echo "Updating xdebug configuration..."
 echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 echo "xdebug.remote_host=$DOCKER_HOST_IP" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+## NOTE! This is VERY slow within Docker for some reason. Once the container
+## is started, these shoudl be run from the host system if possible.
+
 # rm -rf vendor/
-composer install
-rm -rf var/generation/*
-rm -rf var/di/*
-php ./bin/magento module:enable --all
-php ./bin/magento setup:upgrade
-php ./bin/magento setup:di:compile
-php ./bin/magento setup:static-content:deploy
+# rm composer.lock
+# composer install
+# php ./bin/magento module:enable --all
+# php ./bin/magento setup:upgrade --keep-generated
+# rm -rf var/generation/*
+# rm -rf var/di/*
+# php ./bin/magento setup:di:compile
+# php ./bin/magento setup:static-content:deploy
 
 n98 config:set web/unsecure/base_url "http://$DOMAIN/"
 n98 config:set web/secure/base_url "http://$DOMAIN/"
