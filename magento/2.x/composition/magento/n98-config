@@ -1,0 +1,20 @@
+module:enable --skip-root-check --all # Best practice; don't install modules that shouldn't be enabled
+
+config:set --skip-root-check web/unsecure/base_url "http://${domain}/"
+config:set --skip-root-check web/secure/base_url "http://${domain}/"
+config:set --skip-root-check web/unsecure/base_media_url "http://${domain}/"
+config:set --skip-root-check web/secure/base_media_url "http://${domain}/"
+config:set --skip-root-check dev/css/merge_css_files 0
+config:set --skip-root-check dev/css/minify_files 0
+config:set --skip-root-check dev/js/merge_files 0
+config:set --skip-root-check dev/js/minify_files 0
+config:set --skip-root-check web/secure/use_in_frontend 0
+config:set --skip-root-check web/secure/use_in_adminhtml 0
+config:set --skip-root-check system/full_page_cache/caching_application 1
+config:delete --skip-root-check dev/static/sign
+config:delete --skip-root-check catalog/search/engine
+config:delete --skip-root-check web/unsecure/base_static_url
+config:delete --skip-root-check web/secure/base_static_url
+config:delete --skip-root-check web/cookie/cookie_domain
+
+cache:flush --skip-root-check

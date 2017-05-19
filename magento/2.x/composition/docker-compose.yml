@@ -3,23 +3,33 @@ services:
   mysql-host:
     build:
       context: ./mysql
-    volumes: 
-      - ../db:/var/lib/mysql
-    ports: 
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
       - '3306:3306'
-    environment: 
+    environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: magento
+  redis-host:
+    build:
+      context: ./redis
+    ports:
+      - '6379:6379'
   magento-host:
     build:
-      context: ./magento
+      context: ../
+      dockerfile: ./composition/magento/Dockerfile
     environment:
       DOMAIN: magento.dev
       DOCKER_HOST_IP: $DOCKER_HOST_IP
     volumes:
-      - ../webroot:/var/www/html
+#      - ../webroot:/var/www/html # Mounting M2 files on OSX results in *incredibly* slow performance
+#      - ./magento/env.php:/var/www/html/app/etc/env.php # Better to copy during build. Setting prod mode changes MAGE_MODE in base file.
       - ./magento/init.sh:/usr/local/bin/init.sh
-      - ./magento/env.php:/var/www/html/app/etc/env.php
+      - ./magento/n98-config:/var/n98-config
+    entrypoint: wait-for-it.sh -t 45 mysql-host:3306 -- /bin/bash init.sh # Shouldn't be necessary, but healthchecks are returning success too early
     ports:
       - '80:80'
-    command: wait-for-it.sh -t 45 mysql-host:3306 -- /bin/bash init.sh
+    depends_on:
+      - mysql-host
+      - redis-host

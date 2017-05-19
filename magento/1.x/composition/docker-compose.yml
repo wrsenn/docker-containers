@@ -3,7 +3,8 @@ services:
   mysql-host:
     build:
       context: ./mysql
-    volumes: 
+    volumes:
+#      - mysql-vol:/var/lib/mysql # Use volume instead of filesystem mounting for better performance on OSX
       - ../db:/var/lib/mysql
     ports: 
       - '3306:3306'
@@ -23,3 +24,6 @@ services:
     ports:
       - '80:80'
     command: wait-for-it.sh -t 45 mysql-host:3306 -- /bin/bash init.sh
+#volumes:
+#  mysql-vol:
+#    driver: local
